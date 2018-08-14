@@ -23,6 +23,9 @@
     <!-- Custom styles for this template -->
     <link href="css/agency.min.css" rel="stylesheet">
 
+      <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML" async>
+      </script>
+
   </head>
 
   <body id="page-top">
@@ -541,6 +544,7 @@
                   <h2 class="text-uppercase">Tissue Engineering</h2>
                   <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                   <img class="img-fluid d-block mx-auto" src="img/portfolio/epifix.jpg" alt="">
+                  <p>Image Source: http://www.annualreports.com/Company/mimedx-group-inc</p>
                   <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                   <ul class="list-inline">
                     <li>Date: January 2017</li>
@@ -611,12 +615,27 @@
                   <h2 class="text-uppercase">Spatiotemporal Pattern Detection</h2>
                   <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                   <img class="img-fluid d-block mx-auto" src="img/portfolio/fmriScan.jpg" alt="">
-                  <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                  <ul class="list-inline">
-                    <li>Date: January 2017</li>
-                    <li>Client: Finish</li>
-                    <li>Category: Identity</li>
-                  </ul>
+                  <h3 class="text-uppercase"> Background </h3>
+
+                  <p> The aim of the Keilholz lab is to gain understanding of the functional network activity of the human brain in its resting state. This pursuit will eventually allow for the identification of common alterations to this functional network that occur in pathogenic brain states. Over the course of this semester, I contributed to this mission by writing an algorithm which uses machine learning techniques to extract spatiotemporal patterns of functional network activity from fMRI scans of non-pathogenic human brains in the resting state. </p>
+                  <p> To begin this project, I elected to use a clustering algorithm to group windows of fMRI scans with similar frequency distributions into clusters to identify patterns over time which are conserved throughout regions of interest in the brain as well as multiple resting state brain scans. </p>
+
+                  <h3 class="text-uppercase"> Data Preprocessing </h3>
+
+                  <p> All the data used for this research project was foremost preprocessed to remove noise artifacts. As a result, all data used is in within the frequency range of 0.01 – 0.30 Hz, sampled at a frequency of 1/0.72 Hz. Each scan contains 395 time-points and lasts for approximately 5 minutes. Further, each scan can be divided into 274 regions of interest (ROI), however ROI number 255 was removed from analysis in all aspects because its signals are zero for this frequency range and thus would confound the results. </p>
+                  <p> To prepare the data for use in this algorithm, it was first necessary to extract time-courses from the scans. To do this, a mask was applied to the scan for each spatial region of interest to isolate signals in unique functional networks. Thereafter, the signals were averaged at each time point, resulting in 273 sinusoidal time-courses representing the neural activity at those locations over time. Thereafter, the signal was transformed from the time domain to the frequency domain to allow for the use of more straightforward analysis techniques. </p>
+
+                  <h3 class="text-uppercase"> Preliminary Algorithm </h3>
+
+                  <p> Initially, I decided to use a K-Means clustering algorithm on data transformed from the time domain into the spectral domain to extract patterns of recurring frequencies. </p>
+
+                  <p> When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$ </p>
+
+
+
+
+
+
                   <button class="btn btn-primary" data-dismiss="modal" type="button">
                     <i class="fa fa-times"></i>
                     Close Project</button>
