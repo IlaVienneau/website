@@ -586,18 +586,18 @@
                   in the United States alone of febrile seizures in infants anually.  Currently, there are no portable devices on the market with the capability to detect febrile seizures and protect against their
                   consequences. My sophomore design team and I thus sought to
                   create a device which would meet this need. </p>
-                  <h3> class="text-uppercase">Device Design</h3>
+                  <h3 class="text-uppercase">Device Design</h3>
                       <p> Our device is designed as a beanie made from breathable fabric, onto which active electrodes are inkjet printed onto an interior elastic headband componenent. These electrodes continuously measure EEG data from the wearer and feed it
                       into a processing unit. If pre-seizure brain state
                       features are detected, this processing unit will trigger inflation of the protective cushions via release of C02 from a canister trigger valve system.</p>
-                  <h3> class="text-uppercase">Detection Algorithm</h3>
+                  <h3 class="text-uppercase">Detection Algorithm</h3>
                     <p> Our algorithm uses recorded data from a Physionet database
                     of patients suffering from seizures that we fed in as if in
                     real time. Foremost, we preprocessed the data to remove noise due
                     to the AC supply and biological artificts using a Butterworth IIR
                     filter and a moving average window, respectively. We determined
                     features and analyzed the data in ten minute windows by extracting both gamma1 and gamma3 frequency bands from the signal using bandpass filters at 30 – 50 Hz and 70 – 90 Hz and then comparing the magnitude of change in gamma1 to gamma3 spectral power ratio to a known value to map the time-period to either a pre-seizure or normal brain state label. </p>
-                  <h3> class="text-uppercase">Protective Cushion</h3>
+                  <h3 class="text-uppercase">Protective Cushion</h3>
                     <p> First, we determined a threshold value for maximum acceptable
                     adult head deceleration by analyzing metadata collected by the International Brain Injury Association concerning impact tests of adult heads against a rigid wall. After finding that 50gs
                     corresponds to a "no injury" label on the Abbreviated Injury
@@ -649,7 +649,24 @@
 
                   <p> Initially, I decided to use a K-Means clustering algorithm on data transformed from the time domain into the spectral domain to extract patterns of recurring frequencies. </p>
 
-                  <p> To shift the domain of the data, I used a Fourier Transform. The Fourier Transform is a technique which changes the basis of a signal from time to frequency, based on the relationship: $x = \sum_{k=-infty}^infty a_k e^{jw_0 kt}$</p>
+                  <p> To shift the domain of the data, I used the discrete time Fourier Transform. This transformed the data into vectors of power distributions for the frequencies present in the signal at each time point. With this matrix of power distributions of the signal for different frequencies at different time points, I input these frequency values into a rudimentary k-means algorithm I wrote. This algorithm works by randomly selecting k number of data points as initial centroids and then assigning all data points to one of them based on the minimum distance. Then, the centroids move to the average of their cluster, and datum are reassigned to the closest centroid. This process repeats to minimize the average distance between datum to their assigned centroid. </p>
+
+                  <p> Although both Fourier Transforms and k-means techniques are commonly used, both present issues for this application. The Fourier Transform uses too high a time duration to determine the frequency in the signal at that time point, thus it confounds signals that change over time. K-means weights proximal and far distances equally in calculations of data similarity and while this provides a good overall picture of the data, it is less informative about the relationships between similar data points. Further, selecting a number of centroids allows for discrepancies in results based on the number of clusters selected. In an effort to mitigate these issues, I moved forward with a new round of algorithm generation. </p>
+
+                  <h3 class="text-uppercase"> Final Algorithm </h3>
+
+                  <p> To improve the accuracy of the transformed signals, I switched to using a continuous wavelet transform. This is a beneficial development because this technique uses a logarithmic relationship between window length used for signal analysis and the frequency channel it is measuring. By using longer windows for lower frequency channels and shorter windows for higher frequency channels, this method preserves accuracy by using just long enough time windows to capture an accurate depiction of the signal, but short enough windows to not confound two signals that occur in close temporal proximity.
+                  </p>
+
+                  <p> To account for edge effects of the transformation, I first mirrored the signal by concatenating the reverse of the signal at its beginning and end such that the pattern ‘abc’ would become ‘cbaabccba’. This mitigates errors downstream that estimating the power of frequencies before or after the signal as zero or any other constant would induce. After applying a continuous wavelet transform to this mirrored signal, I then trimmed the mirrored edges off to retain just the portion corresponding to the initial segment of the signal, ‘abc’ in the above example. At this point, the data is a matrix of powers of different frequencies in the sample over time. I then isolated only relevant frequencies inside the range of the preprocessed data. To make feature vectors, I concatenated the vectors for each time point vertically such that for each region of interest, the power of all frequency channels were concatenated horizontally; for each scan, all 273 regions of interest were concatenated horizontally, and between 4-16 scans were also concatenated horizontally. In different applications, I changed the window length of a feature vector by concatenating the feature vectors. For a given final feature vector, I then normalized all frequency power values within it. </p>
+
+                  <p>At that point, it is possible to calculate the Kullback Leibler (KL) divergence between frequency vectors. KL divergence is a measure of the way two probability distributions diverge from each other, or in other words, the similarity of two feature vectors. Then, the matrix of kl divergences between feature vectors in a scan or set of scans can be used as inputs to a t- distributed stochastic neighbor embedding algorithm (t-SNE). </p>
+
+                  <p> Similar to K-Means, t-SNE is an unsupervised machine learning algorithm used to visualize clusters in data. However unlike k-Means, t-SNE puts more emphasis on preserving relationships between similar data points rather than preserving relationships between dissimilar data, and it aids in ease of visualization of data by embedding high dimensional data into two or three dimensions while preserving relationships by minimizing the KL divergence between probability distributions of data in its initial embedding and the mapped dimension. This feature decreases potential for artificially imposed relationships between data. To build this algorithm, I adapted the procedure outlined in the journal article “Mapping the stereotyped behavior of freely moving fruit flies” by Gordon J. Berman, Daniel M. Choi, William Bialek, and Joshua W. Shaevitz.  Thus far, this algorithm has been used to create a training data set which presents potential patterns in the brain scans used to make it. </p>
+
+                  <h3 class="text-uppercase"> Moving Forward </h3>
+
+                  <p> After running this manipulated fMRI data through this algorithm, the output is a two dimensional plot representation of the data, with clusters representing groups of similar feature vectors. Currently, I am working to confirm these patterns and map them to their form in fmri scans so that in future scans, deviations from these patterns can be used as markers for brain pathology. </p>
 
                   <button class="btn btn-primary" data-dismiss="modal" type="button">
                     <i class="fa fa-times"></i>
