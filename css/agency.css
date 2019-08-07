@@ -55,7 +55,7 @@ section h3.section-subheading {
 
 @media (min-width: 768px) {
   section {
-    padding: 150px 100;
+    padding: 150px 0;
   }
 }
 
@@ -72,6 +72,7 @@ section h3.section-subheading {
 .btn-primary {
   background-color: #fed136;
   border-color: #fed136;
+  padding: 20px 40px;
 }
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
