@@ -70,7 +70,7 @@
             <p class="text-muted">
               Hello! I’m a Junior Computer Science student at Georgia Tech seeking an internship for the summer of 2020.  My CS concentrations at GT are Artificial Intelligence and Devices. I have experience applying machine learning and computer vision to problems like, respectively, pattern extraction from fMRI brain data and classification of inbound customer documents on a corporate scale.  I’ve built a couple device prototypes at the intersection of computer science and biomedical engineering
               <a class="nav-link-inline js-scroll-trigger" href="#portfolio">(see projects!)</a>
-              and I have experience teaching recitations for CS classes at Georgia Tech as a TA as well as lessons to middle &amp; high schoolers through Girls Who Code. I enjoy building technology solutions and solving problems that make the world a better place, and in my free time I enjoy hiking, rock climbing, running, and any other adventure that comes my way.
+              and I have experience teaching recitations for CS classes at Georgia Tech as a TA as well as lessons to middle &amp; high schoolers through Girls Who Code. I enjoy building technology solutions and solving problems that make the world a better place, and in my free time I enjoy hiking, rock climbing, running, traveling, and any other adventure that comes my way.
             </p>
             <!-- add resume button-->
             <p>
@@ -118,7 +118,7 @@
                   <i class="fa fa-plus fa-3x"></i>
                 </div>
               </div>
-              <img class="img-fluid" src="img/portfolio/whiteboard.jpg" alt="">
+              <img class="img-fluid" src="img/portfolio/chat.png" alt="">
             </a>
             <div class="portfolio-caption">
               <h4>CapChat App</h4>
@@ -205,8 +205,13 @@
                   <!-- Project Details Go Here -->
                   <h2 class="text-uppercase">Selective Noise Cancellation Headphones</h2>
                   <img class="img-fluid d-block mx-auto" src="img/portfolio/gamhack.jpg" alt="">
+                  <h3 class="text-uppercase"> Background:</h3>
                   <p>
-                    blurb about hackathon
+                    Misophonia is a condition in which specific sounds cause acute emotional distress, anger, and /or panic. Some sound triggers are shared by many people with Misophonia, but many are unique to individuals.
+                  </p>
+                  <h3 class="text-uppercase"> Our Device:</h3>
+                  <p>
+                    During the 36 hour hackathon, my team and I built a prototype for a device which selectively cancels triggering noises through headphones to protect the user from induced panic.  To do this, we transformed environmental sounds recorded on a microphone via the Fourier Transform to compare the result to identifiers of trigger sounds stored locally on an Arduino Mega.  Further, we built a circuit which added the inverted sinusoid of the trigger sound to the original to provide noise cancellation through headphones in case of a match. Moving forward, we plan to implement a feature that allows the user to record triggering sounds which will be sent to a cloud platform where machine learning techniques will be used to compile identifiers of the most common triggering sounds to be stored locally.
                   </p>
 
                   <button class="btn btn-primary" data-dismiss="modal" type="button">
@@ -236,7 +241,7 @@
                   <!-- Project Details Go Here -->
                   <h2 class="text-uppercase">Febrile Seizure Detection</h2>
                   <img class="img-fluid d-block mx-auto" src="img/portfolio/Safeguarders.jpg" alt="">
-                  <h3 class="text-uppercase"> Background</h3>
+                  <h3 class="text-uppercase"> Background:</h3>
                   <p> Febrile seizures are a medical phenomenon characterized by
                   rapid, involuntary muscle contractions in patients experiencing
                   a fever. Most common in infants between the age of six months to
@@ -244,11 +249,11 @@
                   in the United States alone of febrile seizures in infants anually.  Currently, there are no portable devices on the market with the capability to detect febrile seizures and protect against their
                   consequences. My sophomore design team and I thus sought to
                   create a device which would meet this need. </p>
-                  <h3 class="text-uppercase">Device Design</h3>
+                  <h3 class="text-uppercase">Device Design:</h3>
                       <p> Our device is designed as a beanie made from breathable fabric, onto which active electrodes are inkjet printed onto an interior elastic headband componenent. These electrodes continuously measure EEG data from the wearer and feed it
                       into a processing unit. If pre-seizure brain state
                       features are detected, this processing unit will trigger inflation of the protective cushions via release of C02 from a canister trigger valve system.</p>
-                  <h3 class="text-uppercase">Detection Algorithm</h3>
+                  <h3 class="text-uppercase">Detection Algorithm:</h3>
                     <p> Our algorithm consists of three main components, data inputs,
                     data preprocessing, feature extraction and analysis, and data outputs. Our inputs are recorded EEG signal data from pediatric seizure patients fed into our algorithm as if in real time. We perform preprocessesing to remove both line noise and biological noise using a Butterworth IIR filter and a moving average window, respectively. Thereafter for ten minute data segments, we used band pass filters to extract gamma1 and gamma3 wavelengths from the signal using bandpass filters, and compared the change in spectral power ratio of gamma1 to gamma3 frequency bands to a known value to map the time-period to either a pre-seizure or normal brain state label. In the case of a pre-seizure value indication, we output a signal to trigger cushion inflation. </p>
                   <h3 class="text-uppercase">Protective Cushion</h3>
@@ -281,11 +286,11 @@
                   <!-- Project Details Go Here -->
                   <h2 class="text-uppercase">Spatiotemporal Pattern Detection</h2>
                   <img class="img-fluid d-block mx-auto" src="img/portfolio/fmriScan.jpg" alt="">
-                  <h3 class="text-uppercase"> Background </h3>
+                  <h3 class="text-uppercase"> Background:</h3>
 
                   <p> The primary focus of the Keilholz Lab is to characterize the dynamics of neural functional connectivity in both pathogenic and non-pathogenic brain states. Over the course of this semester, I contributed to this mission by writing an algorithm which uses machine learning techniques to extract spatiotemporal patterns of functional network activity from fMRI scans of non-pathogenic human brains in the resting state. </p>
 
-                  <h3 class="text-uppercase"> Algorithm Details</h3>
+                  <h3 class="text-uppercase"> Algorithm Details:</h3>
 
                   <p> The inputs to my algorithm are preprocessed, volumetric fMRI data over time.  I prepare this data for use by first applying a mask to the scan for each region of interest (ROI) and averaging the signal value at each time point to extract a sinusoidal time-course for each ROI.  These represent the neural activity at those ROIs over time. Thereafter, I transformed the data from the time domain to the spectral domain using a continuous wavelet transform. Thereafter, I isolated relevant data based on the frequencies known to remain in the signal after preprocessing. At this point, I was able to concatenate feature vectors of multiple time points to account for different windows of time, and compared the similarity of these using Kullback Leibler (KL) divergence. For different window lengths, I used this matrix of KL divergences for scans and sets of scans to run a t-distributed stochastic neighbor embedding algorithm. To build this algorithm, I adapted the procedure outlined in the journal article “Mapping the stereotyped behavior of freely moving fruit flies” by Gordon J. Berman, Daniel M. Choi, William Bialek, and Joshua W. Shaevitz. Thus far, this algorithm has been used to create a training data set which presents potential patterns in the brain scans used to make it.  These patterns can be confirmed and used by the lab in the future as markers for brain pathology. </p>
 
@@ -315,7 +320,7 @@
                 <div class="modal-body">
                   <!-- Project Details Go Here -->
                   <h2 class="text-uppercase">Document Ingestion Service</h2>
-                  <img class="img-fluid d-block mx-auto" src="img/portfolio/gamhack.jpg" alt="">
+                  <img class="img-fluid d-block mx-auto" src="img/portfolio/c1.jpg" alt="">
                   <p>
                     ml + ocr project (note, photos will change)
                   </p>
@@ -347,10 +352,18 @@
                   <!-- Project Details Go Here -->
                   <h2 class="text-uppercase">CapChat App</h2>
                   <img class="img-fluid d-block mx-auto" src="img/portfolio/carbon.jpg" alt="">
+                  <h3 class="text-uppercase">Background:</h3>
                   <p>
-                    capchat project yay
+                  Carbon Hackathon is a 48 hour annual event organized by Capital One that takes place during onboarding week of their Technology Intern Program.  At this event, I formed a team with four other interns I had met just days earlier.
                   </p>
-
+                  <h3 class="text-uppercase">Our Idea:</h3>
+                  <p>
+                  We sought to build an application that would facilitate networking within communities such as Capital One.  Our design is based on the hypothesis that networking will increase if people in a given space such as a café are aware of others’ interest in conversation.  For example, people who want to engage in conversation with someone new are more likely to do so if they can see which other people in a room are also willing to do so at that time.  Similarly, people are more likely to share space with others if they know they are welcome to work alongside them.
+                  </p>
+                  <h3 class="text-uppercase">Our Application:</h3>
+                  <p>
+                  Based on this idea, we built an app that displayed the table layout of the user’s location, with tables shown in green, yellow, red, or no color.  These colors indicated, respectively:  willingness to talk, willingness to quietly work as neighbors, desire to be left alone to focus or save space for an incoming group, and an unoccupied table.  Through the app, users can change the display of tables and assign time allotments for given tables.  To add a second layer of confidence, we used Google Pixels to store information about each table’s value and illuminate up corresponding LEDs lights.  We built a rest API to ensure all applications on the same internet network updated tables simultaneously.  Thus, we allow people to see upon entering a room where to sit based on their preference for social interaction, and thus we hope this fosters new connections between people.
+                  </p>
                   <button class="btn btn-primary" data-dismiss="modal" type="button">
                     <i class="fa fa-times"></i>
                     Close Project</button>
@@ -368,7 +381,7 @@
         <div class="modal-content">
           <div class="close-modal" data-dismiss="modal">
             <div class="lr">
-              <div class="rl">Data Structures and Algorithms</div>
+              <div class="rl"></div>
             </div>
           </div>
           <div class="container">
@@ -376,11 +389,25 @@
               <div class="col-lg-8 mx-auto">
                 <div class="modal-body">
                   <!-- Project Details Go Here -->
-                  <h2 class="text-uppercase"></h2>
+                  <h2 class="text-uppercase">Data Structures and Algorithms</h2>
                   <img class="img-fluid d-block mx-auto" src="img/portfolio/tas.jpg" alt="">
+                  <h3 class="text-uppercase"> Data Structures Covered:</h3>
                   <p>
-                    syllabus basically
+                    Arrays, ArrayLists, LinkedLists (Singular, Double, Circular), Stacks, Queues, Dequeues, Priority Queues, Binary Trees, Binary Search Trees, AVL Trees, Heaps, 2-4 Trees, Hash Maps, Hash Tables, Graphs.
                   </p>
+                  <h3 class="text-uppercase"> Algorithms Covered:</h3>
+                  <p>
+                    Sorting (Bubble, Insertion, Selection Cocktail Shaker, Merge, Quick, Radix), Pattern Matching (Brute Force, Boyer-Moore, Knuth-Morris-Pratt, Rabin-Karp), Graph Algorithms (Dijkstra’s Shortest Path, BFS, DFS, Kruskal’s, Prim’s), Dynamic Programming Algorithms (Longest Common Subsequence).
+                  </p>
+                  <h3 class="text-uppercase">TA Responsibilities:</h3>
+                  <p>
+                    In my role as a Teaching Assistant (TA) for this course, I taught these core concepts to 25+ students in weekly recitations with my co-TA.  In these lessons we lectured about content, answered questions about concepts, homework, and tests, and solved problems with the students interactively.  Additionally, I held 3+ hours of recitations weekly in which I tutored any of the 300+ students in the class on an individual level, whether that be to help them understand concepts or to troubleshoot problems with their homework.  Further, I helped write J-Units for homework assignments as well as grade the assignments for my recitation based on J-Units specific for that assignment. These homework assignments were data structures or algorithms the students coded in Java.  Finally, I graded student exams.
+                  </p>
+                  <h3 class="text-uppercase"> My Impact :</h3>
+                  <p>
+                    In this role, I was able to help students understand and find excitement in data structures & algorithms, as well as deepen my own knowledge of the course concepts.
+                  </p>
+
 
                   <button class="btn btn-primary" data-dismiss="modal" type="button">
                     <i class="fa fa-times"></i>
