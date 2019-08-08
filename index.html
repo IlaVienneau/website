@@ -89,12 +89,58 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Projects</h2>
+            <h2 class="section-heading text-uppercase">Projects and Involvements</h2>
             <!--
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
             -->
           </div>
         </div>
+        <!-- row 0 -->
+        <div class="row">
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal4">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/portfolio/cnn_acc.jpg" alt="">
+            </a>
+            <div class="portfolio-caption">
+              <h4>Document Ingestion Service</h4>
+              <p class="text-muted">Capital One, Gallery</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal5">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/portfolio/whiteboard.png" alt="">
+            </a>
+            <div class="portfolio-caption">
+              <h4>CapChat App</h4>
+              <p class="text-muted">Carbon Hackathon</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 portfolio-item">
+            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <i class="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img class="img-fluid" src="img/portfolio/duck.png" alt="">
+            </a>
+            <div class="portfolio-caption">
+              <h4>Data Structures and Algorithms</h4>
+              <p class="text-muted">GT TA</p>
+            </div>
+          </div>
+        </div>
+        <!-- row 1 -->
         <div class="row">
           <div class="col-md-4 col-sm-6 portfolio-item">
             <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
@@ -242,6 +288,99 @@
                   <h3 class="text-uppercase"> Algorithm Details</h3>
 
                   <p> The inputs to my algorithm are preprocessed, volumetric fMRI data over time.  I prepare this data for use by first applying a mask to the scan for each region of interest (ROI) and averaging the signal value at each time point to extract a sinusoidal time-course for each ROI.  These represent the neural activity at those ROIs over time. Thereafter, I transformed the data from the time domain to the spectral domain using a continuous wavelet transform. Thereafter, I isolated relevant data based on the frequencies known to remain in the signal after preprocessing. At this point, I was able to concatenate feature vectors of multiple time points to account for different windows of time, and compared the similarity of these using Kullback Leibler (KL) divergence. For different window lengths, I used this matrix of KL divergences for scans and sets of scans to run a t-distributed stochastic neighbor embedding algorithm. To build this algorithm, I adapted the procedure outlined in the journal article “Mapping the stereotyped behavior of freely moving fruit flies” by Gordon J. Berman, Daniel M. Choi, William Bialek, and Joshua W. Shaevitz. Thus far, this algorithm has been used to create a training data set which presents potential patterns in the brain scans used to make it.  These patterns can be confirmed and used by the lab in the future as markers for brain pathology. </p>
+
+                  <button class="btn btn-primary" data-dismiss="modal" type="button">
+                    <i class="fa fa-times"></i>
+                    Close Project</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 4 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl"></div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+                <div class="modal-body">
+                  <!-- Project Details Go Here -->
+                  <h2 class="text-uppercase">Document Ingestion Service</h2>
+                  <img class="img-fluid d-block mx-auto" src="img/portfolio/gamhack.jpg" alt="">
+                  <p>
+                    ml + ocr project (note, photos will change)
+                  </p>
+
+                  <button class="btn btn-primary" data-dismiss="modal" type="button">
+                    <i class="fa fa-times"></i>
+                    Close Project</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 5 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl"></div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+                <div class="modal-body">
+                  <!-- Project Details Go Here -->
+                  <h2 class="text-uppercase">CapChat App</h2>
+                  <img class="img-fluid d-block mx-auto" src="img/portfolio/carbon.jpg" alt="">
+                  <p>
+                    capchat project yay
+                  </p>
+
+                  <button class="btn btn-primary" data-dismiss="modal" type="button">
+                    <i class="fa fa-times"></i>
+                    Close Project</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 6 -->
+    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+              <div class="rl">Data Structures and Algorithms</div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8 mx-auto">
+                <div class="modal-body">
+                  <!-- Project Details Go Here -->
+                  <h2 class="text-uppercase"></h2>
+                  <img class="img-fluid d-block mx-auto" src="img/portfolio/tas.jpg" alt="">
+                  <p>
+                    syllabus basically
+                  </p>
 
                   <button class="btn btn-primary" data-dismiss="modal" type="button">
                     <i class="fa fa-times"></i>
