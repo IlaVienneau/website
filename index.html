@@ -254,11 +254,11 @@
                       into a processing unit. If pre-seizure brain state
                       features are detected, this processing unit will trigger inflation of the protective cushions via release of C02 from a canister trigger valve system.</p>
                   <h3 class="text-uppercase">Detection Algorithm:</h3>
-                    <p> Our algorithm consists of three main components, data inputs,
-                    data preprocessing, feature extraction and analysis, and data outputs. Our inputs are recorded EEG signal data from pediatric seizure patients fed into our algorithm as if in real time. We perform preprocessesing to remove both line noise and biological noise using a Butterworth IIR filter and a moving average window, respectively. Thereafter for ten minute data segments, we used band pass filters to extract gamma1 and gamma3 wavelengths from the signal using bandpass filters, and compared the change in spectral power ratio of gamma1 to gamma3 frequency bands to a known value to map the time-period to either a pre-seizure or normal brain state label. In the case of a pre-seizure value indication, we output a signal to trigger cushion inflation. </p>
+                    <p> Our algorithm consists of three main components: data inputs,
+                    data preprocessing, feature extraction and analysis, and data outputs. Our inputs are recorded EEG signal data from pediatric seizure patients fed into our algorithm as if in real time. We perform preprocessesing to remove both line noise and biological noise using a Butterworth IIR filter and a moving average window, respectively. Thereafter for ten minute data segments, we used bandpass filters to extract gamma1 and gamma3 wavelengths from the signal, and compared the change in spectral power ratio of gamma1 to gamma3 frequency bands to a known value to map the time-period to either a pre-seizure or normal brain state label. In the case of a pre-seizure value indication, we output a signal to trigger cushion inflation. </p>
                   <h3 class="text-uppercase">Protective Cushion</h3>
-                    <p> Through literature review, we determined
-                    a value for the maximum acceptable force an infant head can withstand. Thereafter determined experimentally that the optimal design specifications for our cushion when inflated are approximately spherical shape with a seven inch radius, and construction from a permeable fabric. These specifications allow optimal impact absorption and decceleration.</p>
+                    <p> Through a literature review, we determined
+                    a value for the maximum acceptable force an infant head can withstand. We thereafter determined experimentally that the optimal design specifications for our cushion when inflated are an approximately sphereical shape with a seven inch radius and construction from permeable fabric.  These specifications allow optimal impact absorption and decceleration.</p>
                   <button class="btn btn-primary" data-dismiss="modal" type="button">
                     <i class="fa fa-times"></i>
                     Close Project</button>
@@ -292,7 +292,7 @@
 
                   <h3 class="text-uppercase"> Algorithm Details:</h3>
 
-                  <p> The inputs to my algorithm are preprocessed, volumetric fMRI data over time.  I prepare this data for use by first applying a mask to the scan for each region of interest (ROI) and averaging the signal value at each time point to extract a sinusoidal time-course for each ROI.  These represent the neural activity at those ROIs over time. Thereafter, I transformed the data from the time domain to the spectral domain using a continuous wavelet transform. Thereafter, I isolated relevant data based on the frequencies known to remain in the signal after preprocessing. At this point, I was able to concatenate feature vectors of multiple time points to account for different windows of time, and compared the similarity of these using Kullback Leibler (KL) divergence. For different window lengths, I used this matrix of KL divergences for scans and sets of scans to run a t-distributed stochastic neighbor embedding algorithm. To build this algorithm, I adapted the procedure outlined in the journal article “Mapping the stereotyped behavior of freely moving fruit flies” by Gordon J. Berman, Daniel M. Choi, William Bialek, and Joshua W. Shaevitz. Thus far, this algorithm has been used to create a training data set which presents potential patterns in the brain scans used to make it.  These patterns can be confirmed and used by the lab in the future as markers for brain pathology. </p>
+                  <p> The inputs to my algorithm are preprocessed, volumetric fMRI data over time.  I prepare this data for use by first applying a mask to the scan for each region of interest (ROI) and averaging the signal value at each time point to extract a sinusoidal time-course for each ROI.  These represent the neural activity at those ROIs over time.  Then, I transformed the data from the time domain to the spectral domain using a continuous wavelet transform. After, I isolated relevant data based on the frequencies known to remain in the signal after preprocessing. At this point, I was able to concatenate feature vectors of multiple time points to account for different windows of time, and compared the similarity of these using Kullback Leibler (KL) divergence. For different window lengths, I used this matrix of KL divergences for scans and sets of scans to run a t-distributed stochastic neighbor embedding algorithm. To build this algorithm, I adapted the procedure outlined in the journal article “Mapping the stereotyped behavior of freely moving fruit flies” by Gordon J. Berman, Daniel M. Choi, William Bialek, and Joshua W. Shaevitz. Thus far, this algorithm has been used to create a training data set which presents potential patterns in the brain scans used to make it.  These patterns can be confirmed and used by the lab in the future as markers for brain pathology. </p>
 
                   <button class="btn btn-primary" data-dismiss="modal" type="button">
                     <i class="fa fa-times"></i>
@@ -320,9 +320,26 @@
                 <div class="modal-body">
                   <!-- Project Details Go Here -->
                   <h2 class="text-uppercase">Document Ingestion Service</h2>
-                  <img class="img-fluid d-block mx-auto" src="img/portfolio/c1.jpg" alt="">
+                  <img class="img-fluid d-block mx-auto" src="img/portfolio/noods.jpg" alt="">
+                  <h3 class="text-uppercase">Background:</h3>
                   <p>
-                    ml + ocr project (note, photos will change)
+                  The Gallery department ingests 9 to 15 thousand documents daily, each of which must be manually classified by type and read to extract metadata such as name, date of birth, account number, social security number, and other details.  Currently, this process is outsourced and errors in transcription of metadata or routing of documents based on type can cause delays that span days in the process of case creation.
+                  </p>
+                  <h3 class="text-uppercase">Our Goal:</h3>
+                  <p>
+                  We sought to partially automate the document ingestion pipeline within Gallery to increase the efficiency and accuracy of customer case creation and reduce Capital One’s dependence on third party vendors.
+                  </p>
+                  <h3 class="text-uppercase">Our Project:</h3>
+                  <p>
+                  We created a service that used Optical Character Recognition (OCR) to extract text from scanned documents, a Random Forest Decision Tree model to classify the documents’ extracted text by type, and finally an algorithm that parsed this text to extract metadata.  The metadata and document type were output as a .json, and can be used to route documents to their correct location.
+                  </p>
+                  <h3 class="text-uppercase">Our Process:</h3>
+                  <p>
+                    Foremost, our team held meetings with vendors offering OCR and ICR (intelligent character recognition) services, conducted demos with their products and wrote reports for future use recommending the products best suited for our documents if the company were to pursue a contract.  These included GoogleVision, AWS Textract, Vidado, ScribeFusion, Abto, and more. For our service, we selected Google’s open source software, Tesseract, because it could be run locally on our computers thus allowing us to safely use documents with customers’ personal contact information.  To build a model for document classification, we used two main approaches.  First, we tested the suitability of using the extracted text as an input to sentiment analysis models using Naïve Bayes, a Logistic Regression, and Random Forest Decision Trees.  The second method we tested was using the image itself as the input to a Convolutional Neural Network for classification.  We then moved forward with the most accurate model—the Random Forest at 92%.  Thereafter, we wrote an algorithm to parse the OCR text output and extract relevant metadata, and compiled this information with document type into a .json to be sent to the next process in the case creation pipeline.
+                  </p>
+                  <h3 class="text-uppercase">Our Impact:</h3>
+                  <p>
+                    The service my team built answered a long standing question within the Gallery department of the feasibility and value of automating this pipeline.  Our process allows all form-based documents to be streamlined through this process enabling faster and more accurate case creation and better customer service.
                   </p>
 
                   <button class="btn btn-primary" data-dismiss="modal" type="button">
@@ -362,7 +379,7 @@
                   </p>
                   <h3 class="text-uppercase">Our Application:</h3>
                   <p>
-                  Based on this idea, we built an app that displayed the table layout of the user’s location, with tables shown in green, yellow, red, or no color.  These colors indicated, respectively:  willingness to talk, willingness to quietly work as neighbors, desire to be left alone to focus or save space for an incoming group, and an unoccupied table.  Through the app, users can change the display of tables and assign time allotments for given tables.  To add a second layer of confidence, we used Google Pixels to store information about each table’s value and illuminate up corresponding LEDs lights.  We built a rest API to ensure all applications on the same internet network updated tables simultaneously.  Thus, we allow people to see upon entering a room where to sit based on their preference for social interaction, and thus we hope this fosters new connections between people.
+                  Based on this idea, we built an app that displayed the table layout of the user’s location, with tables shown in green, yellow, red, or no color.  These colors indicated, respectively:  willingness to talk, willingness to quietly work as neighbors, desire to be left alone to focus or save space for an incoming group, and an unoccupied table.  Through the app, users can change the display of tables and assign time allotments for given tables.  To add a second layer of confidence, we used Google Pixels to store information about each table’s value and illuminate corresponding LEDs lights.  We built a RESTful API to ensure all applications on the same internet network updated tables simultaneously.  With this technology, we allow people to see upon entering a room where to sit based on their preference for social interaction, and thus we hope this fosters new connections between people.
                   </p>
                   <button class="btn btn-primary" data-dismiss="modal" type="button">
                     <i class="fa fa-times"></i>
